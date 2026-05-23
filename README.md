@@ -1,21 +1,35 @@
 # SelfHostedInferenceBumblebee
 
-**TODO: Add description**
+Bumblebee/Nx runtime backend for `self_hosted_inference_core`.
+
+This package owns the concrete model runtime for self-hosted Bumblebee
+adapters. For TRINITY it loads the adapted Qwen/Sakana artifact, keeps
+hidden-state extraction and route-head execution inside the backend, and
+returns typed `SelfHostedInferenceCore.RouteLogits` results.
+
+## Gates
+
+Default CI:
+
+```sh
+mix ci
+```
+
+Opt-in CUDA artifact parity:
+
+```sh
+XLA_TARGET=cuda12 TRINITY_ARTIFACT_DIR=/path/to/adapted_qwen3_0_6b_layer26 mix test --only qwen_sakana_adapted --timeout 300000
+```
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `self_hosted_inference_bumblebee` to your list of dependencies in `mix.exs`:
+Until published to Hex, depend on the GitHub repo:
 
 ```elixir
 def deps do
   [
-    {:self_hosted_inference_bumblebee, "~> 0.1.0"}
+    {:self_hosted_inference_bumblebee,
+     github: "nshkrdotcom/self_hosted_inference_bumblebee"}
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/self_hosted_inference_bumblebee>.
-
