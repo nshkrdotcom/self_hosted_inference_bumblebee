@@ -54,6 +54,10 @@ defmodule SelfHostedInferenceBumblebeeTest do
     assert {:ok, %RouteLogits{} = second} = SelfHostedInferenceBumblebee.route(adapter, messages)
 
     assert first == second
+
+    assert first.transcript_hash ==
+             "6f7d00cd47d137afbaf4bf479a305cd2e11b5ceb4138230648eb21a57c9e5106"
+
     assert is_integer(first.selected_agent_id)
     assert is_integer(first.selected_role_id)
     assert is_list(first.agent_logits)

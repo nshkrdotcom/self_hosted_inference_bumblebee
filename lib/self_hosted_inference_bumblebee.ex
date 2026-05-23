@@ -123,10 +123,35 @@ defmodule SelfHostedInferenceBumblebee do
         content: Map.get(message, :content, Map.get(message, "content"))
       }
     end)
+    |> normalize_for_hash()
     |> :erlang.term_to_binary([:compressed])
     |> then(&:crypto.hash(:sha256, &1))
     |> Base.encode16(case: :lower)
   end
+
+  defp normalize_for_hash(value) when is_map(value) do
+    value
+    |> Enum.to_list()
+    |> Enum.sort_by(fn {key, _value} -> normalize_key(key) end)
+    |> Enum.map(fn {key, nested} -> {normalize_key(key), normalize_for_hash(nested)} end)
+    |> Map.new()
+  end
+
+  defp normalize_for_hash(value) when is_list(value), do: Enum.map(value, &normalize_for_hash/1)
+
+  defp normalize_for_hash(value) when is_tuple(value),
+    do: value |> Tuple.to_list() |> normalize_for_hash()
+
+  defp normalize_for_hash(value) when is_atom(value), do: Atom.to_string(value)
+  defp normalize_for_hash(value) when is_number(value), do: value
+  defp normalize_for_hash(value) when is_binary(value), do: value
+  defp normalize_for_hash(value), do: inspect(value)
+
+  defp normalize_key(nil), do: ""
+  defp normalize_key(key) when is_atom(key), do: Atom.to_string(key)
+  defp normalize_key(key) when is_binary(key), do: key
+  defp normalize_key(key) when is_integer(key), do: Integer.to_string(key)
+  defp normalize_key(key), do: inspect(key)
 
   defp token_count(messages) do
     messages
