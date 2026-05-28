@@ -47,14 +47,13 @@ defmodule SelfHostedInferenceBumblebee.QwenSakanaLoader do
     * `:runtime_profile` - a `SelfHostedInferenceBumblebee.Runtime.Profile` name or struct.
       Defaults to `:cuda_exla` (canonical production lane). The profile
       determines the Nx backend tuple and whether CUDA must be present.
-    * `:backend` - compatibility override. When supplied, overrides the
+    * `:backend` - explicit override. When supplied, overrides the
       backend derived from `:runtime_profile`.
-    * `:require_cuda` - compatibility override. When supplied, overrides the
+    * `:require_cuda` - explicit override. When supplied, overrides the
       profile's `require_cuda?` flag.
 
-  Backward compatibility: callers that pass only `:backend` and
-  `:require_cuda` continue to behave exactly as before — the defaults match the
-  previous CUDA-shaped defaults.
+  The defaults preserve the canonical CUDA-shaped production lane unless a
+  caller selects a different runtime profile or explicit override.
   """
   @spec load(keyword()) :: {:ok, t()} | {:error, term()}
   def load(opts \\ []) when is_list(opts) do

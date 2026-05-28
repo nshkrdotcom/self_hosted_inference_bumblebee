@@ -23,6 +23,7 @@ defmodule SelfHostedInferenceBumblebeeTest do
     assert manifest.backend == :bumblebee
     assert manifest.startup_kind == :attach_existing_service
     assert manifest.capabilities.route_logits? == true
+    assert manifest.capabilities.crucible_runtime_provider? == true
     assert Enum.any?(manifest.metadata.adapter_refs, &(&1.id == :trinity_qwen3_0_6b_sakana))
     assert Enum.any?(manifest.metadata.adapter_refs, &(&1.id == :mock_tiny))
   end
@@ -75,7 +76,7 @@ defmodule SelfHostedInferenceBumblebeeTest do
     refute Enum.any?(public_functions, &String.contains?(&1, "vector"))
   end
 
-  test "route hash inputs use the coordinator-compatible decision and rounded-logit payload" do
+  test "route hash inputs use the runtime-stable decision and rounded-logit payload" do
     adapter = Adapter.mock_tiny()
     messages = [%{role: "user", content: "What is 17 + 25? Answer briefly."}]
 
@@ -131,6 +132,21 @@ defmodule SelfHostedInferenceBumblebeeTest do
 
     assert AdapterRef.key(adapter.adapter_ref) ==
              {:trinity_qwen3_0_6b_sakana, "0.1.0", :route_logits_v1}
+  end
+
+  test "startup plan exposes the Crucible provider module" do
+    adapter_ref = Adapter.mock_tiny().adapter_ref
+
+    spec =
+      InstanceSpec.new!(
+        backend: :bumblebee,
+        adapter_ref: adapter_ref,
+        backend_options: %{model_identity: "mock"}
+      )
+
+    assert {:ok, plan} = Backend.startup_plan(spec)
+    assert plan.backend_state.crucible_provider == SelfHostedInferenceBumblebee.CrucibleProvider
+    assert plan.metadata.crucible_provider == SelfHostedInferenceBumblebee.CrucibleProvider
   end
 
   defp contains_tensor?(%Nx.Tensor{}), do: true

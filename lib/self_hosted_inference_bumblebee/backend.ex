@@ -23,7 +23,8 @@ defmodule SelfHostedInferenceBumblebee.Backend do
       capabilities: %{
         route_logits?: true,
         qwen_sakana_adapted?: true,
-        hidden_state_public?: false
+        hidden_state_public?: false,
+        crucible_runtime_provider?: true
       },
       supported_surfaces: [:local_subprocess, :lower_simulation],
       resource_profile: %{gpu_recommended?: true, canonical_runtime_profile: :cuda_exla},
@@ -57,10 +58,20 @@ defmodule SelfHostedInferenceBumblebee.Backend do
          source_runtime_ref:
            "adapter:#{inspect(SelfHostedInferenceCore.AdapterRef.key(adapter_ref))}",
          capabilities: %{route_logits?: true},
-         metadata: %{adapter_ref: adapter_ref}
+         metadata: %{
+           adapter_ref: adapter_ref,
+           crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+         }
        },
-       backend_state: %{adapter_ref: adapter_ref, model_identity: model_identity},
-       metadata: %{adapter_ref: adapter_ref}
+       backend_state: %{
+         adapter_ref: adapter_ref,
+         model_identity: model_identity,
+         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+       },
+       metadata: %{
+         adapter_ref: adapter_ref,
+         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+       }
      }}
   end
 

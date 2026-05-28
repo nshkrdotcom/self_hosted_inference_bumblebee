@@ -10,7 +10,7 @@ defmodule SelfHostedInferenceBumblebee.Runtime.Profile do
   ## Built-in profiles
 
     * `:cuda_exla` — canonical production lane. Requires CUDA platform.
-    * `:host_exla` — CPU EXLA lane for compatibility / non-CUDA hosts.
+    * `:host_exla` — CPU EXLA lane for non-CUDA hosts and validation checks.
     * `:binary` — pure Nx binary backend; tiny tests only.
     * `:mock_tiny` — synthetic tiny coordinator with no Qwen load (Phase 5).
     * `:emlx` — Apple Silicon path. Descriptive only unless the EMLX backend
@@ -210,7 +210,7 @@ defmodule SelfHostedInferenceBumblebee.Runtime.Profile do
   Behaviour:
 
     * `:require_cuda? == true` profiles delegate to
-      `SelfHostedInferenceBumblebee.Runtime.Preflight.put_cuda_backend!/0` for back-compat.
+      `SelfHostedInferenceBumblebee.Runtime.Preflight.put_cuda_backend!/0`.
     * Profiles whose `:nx_backend` module is loaded set the global default
       via `Nx.global_default_backend/1`.
     * Profiles whose `:nx_backend` module is **not** loaded raise an
