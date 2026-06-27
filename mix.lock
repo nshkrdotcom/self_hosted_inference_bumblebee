@@ -1,6 +1,6 @@
 %{
   "axon": {:hex, :axon, "0.8.1", "c4a975e62a14ab6c374997b77367ec3a4c2740952ac474d3b0f202c91b7f75c4", [:mix], [{:kino, "~> 0.7", [hex: :kino, repo: "hexpm", optional: true]}, {:kino_vega_lite, "~> 0.1.7", [hex: :kino_vega_lite, repo: "hexpm", optional: true]}, {:nx, "~> 0.10", [hex: :nx, repo: "hexpm", optional: false]}, {:polaris, "~> 0.1", [hex: :polaris, repo: "hexpm", optional: false]}, {:table_rex, "~> 3.1 or ~> 4.1", [hex: :table_rex, repo: "hexpm", optional: true]}], "hexpm", "682a3517489300507ac9345f28341e7fa95bc5b4960d645816074ce551795d37"},
-  "bumblebee": {:git, "https://github.com/elixir-nx/bumblebee.git", "d0774e8ab8c4d5ac60ade95ec8dc9e1f0efd7306", [ref: "d0774e8ab8c4d5ac60ade95ec8dc9e1f0efd7306"]},
+  "bumblebee": {:git, "https://github.com/North-Shore-AI/bumblebee.git", "cbe271afafcacff04d298046f4b11711712b4123", [ref: "cbe271afafcacff04d298046f4b11711712b4123"]},
   "bunt": {:hex, :bunt, "1.0.0", "081c2c665f086849e6d57900292b3a161727ab40431219529f13c4ddcf3e7a44", [:mix], [], "hexpm", "dc5f86aa08a5f6fa6b8096f0735c4e76d54ae5c9fa2c143e5a1fc7c1cd9bb6b5"},
   "castore": {:hex, :castore, "1.0.19", "6903cabdfd9d1af46454126e7c8385186659dd33ecfb74a885cae52221ad6109", [:mix], [], "hexpm", "3669e6cab13f54c2df26b3e6833745d647f35b6e30d8ddd5975df0d5c842ca98"},
   "certifi": {:hex, :certifi, "2.15.0", "0e6e882fcdaaa0a5a9f2b3db55b1394dba07e8d6d9bcad08318fb604c6839712", [:rebar3], [], "hexpm", "b147ed22ce71d72eafdad94f055165c1c182f61a2ff49df28bcc71d1d5b94a60"},

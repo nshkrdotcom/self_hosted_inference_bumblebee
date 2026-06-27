@@ -17,7 +17,7 @@ defmodule SelfHostedInferenceBumblebee.MixProject do
 
   @version "0.1.0"
   @source_url "https://github.com/nshkrdotcom/self_hosted_inference_bumblebee"
-  @bumblebee_ref "d0774e8ab8c4d5ac60ade95ec8dc9e1f0efd7306"
+  @bumblebee_ref "cbe271afafcacff04d298046f4b11711712b4123"
 
   def project do
     [
@@ -61,7 +61,7 @@ defmodule SelfHostedInferenceBumblebee.MixProject do
       {:nx, "~> 0.12", override: true},
       {:exla, "~> 0.12", override: true},
       {:axon, "~> 0.7"},
-      {:bumblebee, github: "elixir-nx/bumblebee", ref: @bumblebee_ref, override: true},
+      {:bumblebee, github: "North-Shore-AI/bumblebee", ref: @bumblebee_ref, override: true},
       DependencySources.dep(:self_hosted_inference_core, __DIR__, override: true),
       DependencySources.dep(:execution_plane, __DIR__, override: true),
       DependencySources.dep(:execution_plane_process, __DIR__, override: true),
