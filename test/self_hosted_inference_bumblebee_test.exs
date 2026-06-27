@@ -146,7 +146,14 @@ defmodule SelfHostedInferenceBumblebeeTest do
 
     assert {:ok, plan} = Backend.startup_plan(spec)
     assert plan.backend_state.crucible_provider == SelfHostedInferenceBumblebee.CrucibleProvider
+
+    assert plan.backend_state.formal_crucible_provider ==
+             SelfHostedInferenceBumblebee.FormalCrucibleProvider
+
     assert plan.metadata.crucible_provider == SelfHostedInferenceBumblebee.CrucibleProvider
+
+    assert plan.metadata.formal_crucible_provider ==
+             SelfHostedInferenceBumblebee.FormalCrucibleProvider
   end
 
   defp contains_tensor?(%Nx.Tensor{}), do: true

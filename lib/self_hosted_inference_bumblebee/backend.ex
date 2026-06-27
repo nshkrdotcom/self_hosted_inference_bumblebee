@@ -60,17 +60,20 @@ defmodule SelfHostedInferenceBumblebee.Backend do
          capabilities: %{route_logits?: true},
          metadata: %{
            adapter_ref: adapter_ref,
-           crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+           crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider,
+           formal_crucible_provider: SelfHostedInferenceBumblebee.FormalCrucibleProvider
          }
        },
        backend_state: %{
          adapter_ref: adapter_ref,
          model_identity: model_identity,
-         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider,
+         formal_crucible_provider: SelfHostedInferenceBumblebee.FormalCrucibleProvider
        },
        metadata: %{
          adapter_ref: adapter_ref,
-         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider
+         crucible_provider: SelfHostedInferenceBumblebee.CrucibleProvider,
+         formal_crucible_provider: SelfHostedInferenceBumblebee.FormalCrucibleProvider
        }
      }}
   end

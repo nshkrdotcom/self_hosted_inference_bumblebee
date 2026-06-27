@@ -7,6 +7,12 @@ adapters. For TRINITY it loads the adapted Qwen/Sakana artifact, keeps
 hidden-state extraction and route-head execution inside the backend, and
 returns typed `SelfHostedInferenceCore.RouteLogits` results.
 
+The package exposes both the SHIC-native
+`SelfHostedInferenceBumblebee.CrucibleProvider` and the formal shared ABI
+adapter `SelfHostedInferenceBumblebee.FormalCrucibleProvider`. The formal
+adapter implements `Crucible.Provider` and delegates live loading, forward
+execution, generation, and trace writing to the SHIC-native provider.
+
 ## Gates
 
 Default CI:

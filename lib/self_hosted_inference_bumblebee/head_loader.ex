@@ -128,18 +128,9 @@ defmodule SelfHostedInferenceBumblebee.HeadLoader do
     do: {:error, {:invalid_num_roles, num_roles}}
 
   defp resolve_map_key!(container, key) when is_map(container) and is_binary(key) do
-    if Map.has_key?(container, key) do
-      key
-    else
-      existing_atom_key(container, key) || raise_missing_map_key!(key)
-    end
-  end
-
-  defp resolve_map_key!(container, key) when is_map(container) do
-    if Map.has_key?(container, key) do
-      key
-    else
-      raise_missing_map_key!(key)
+    case Map.fetch(container, key) do
+      {:ok, _value} -> key
+      :error -> existing_atom_key(container, key) || raise_missing_map_key!(key)
     end
   end
 
