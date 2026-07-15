@@ -58,9 +58,9 @@ defmodule SelfHostedInferenceBumblebee.MixProject do
 
   defp deps do
     [
-      {:nx, "~> 0.12", override: true},
-      {:exla, "~> 0.12", override: true},
-      {:axon, "~> 0.7"},
+      {:nx, "~> 0.12.1", override: true},
+      {:exla, "~> 0.12.0", override: true},
+      {:axon, "~> 0.8.1"},
       {:bumblebee, github: "North-Shore-AI/bumblebee", ref: @bumblebee_ref, override: true},
       DependencySources.dep(:self_hosted_inference_core, __DIR__, override: true),
       DependencySources.dep(:execution_plane, __DIR__, override: true),
@@ -74,10 +74,10 @@ defmodule SelfHostedInferenceBumblebee.MixProject do
       {:crucible_signal, path: "../../North-Shore-AI/crucible_signal"},
       {:crucible_signal_trace, path: "../../North-Shore-AI/crucible_signal_trace"},
       {:crucible_tap, path: "../../North-Shore-AI/crucible_tap"},
-      {:jason, "~> 1.4"},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.40.1", only: [:dev, :test], runtime: false}
+      {:jason, "~> 1.4.5"},
+      {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.40.3", only: [:dev, :test], runtime: false}
     ]
   end
 
