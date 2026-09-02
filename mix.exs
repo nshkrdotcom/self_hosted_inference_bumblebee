@@ -67,11 +67,32 @@ defmodule SelfHostedInferenceBumblebee.MixProject do
       workspace_dep({:crucible_factorization, "~> 0.1.0", override: true}),
       workspace_dep({:crucible_tensor_patch, "~> 0.1.0", override: true}),
       workspace_dep({:crucible_model_registry, "~> 0.3.1", override: true}),
-      workspace_dep({:crucible_bumblebee, "~> 0.1.0"}),
-      workspace_dep({:crucible_provider_contracts, "~> 0.1.0"}),
-      workspace_dep({:crucible_signal, "~> 0.1.0"}),
-      workspace_dep({:crucible_signal_trace, "~> 0.1.0"}),
-      workspace_dep({:crucible_tap, "~> 0.1.0"}),
+      workspace_dep(
+        {:crucible_bumblebee, github: "North-Shore-AI/crucible_bumblebee", branch: "main"}
+      ),
+      workspace_dep(
+        {:crucible_mechinterp,
+         github: "North-Shore-AI/crucible_mechinterp", branch: "main", override: true}
+      ),
+      workspace_dep(
+        {:crucible_policy,
+         github: "North-Shore-AI/crucible_policy", branch: "main", override: true}
+      ),
+      workspace_dep(
+        {:crucible_provider_contracts,
+         github: "North-Shore-AI/crucible_provider_contracts", branch: "main"}
+      ),
+      workspace_dep(
+        {:crucible_signal,
+         github: "North-Shore-AI/crucible_signal", branch: "main", override: true}
+      ),
+      workspace_dep(
+        {:crucible_signal_trace,
+         github: "North-Shore-AI/crucible_signal_trace", branch: "main", override: true}
+      ),
+      workspace_dep(
+        {:crucible_tap, github: "North-Shore-AI/crucible_tap", branch: "main", override: true}
+      ),
       {:jason, "~> 1.4.5"},
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.7", only: [:dev, :test], runtime: false},
